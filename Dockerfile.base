@@ -4,9 +4,6 @@ LABEL app.author="fortes" app.email="fortes@uci.cu" app.name="aspirante-api"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY deploy/sources.list /etc/apt/sources.list
-COPY deploy/.npmrc /root/
-
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --allow-remove-essential python3 python-pip python3-pip libpq-dev openssh-client curl ca-certificates gnupg gettext libncurses5 libtinfo5 nano \
     && rm -rf /var/lib/apt/lists/*
@@ -26,10 +23,8 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-# Copy the node_modules folder with all dependencies
-COPY node_modules/ ./node_modules/
-#COPY package.json .
-#RUN npm install
+COPY package.json .
+RUN npm install
 
 
 
