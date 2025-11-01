@@ -5,8 +5,11 @@ LABEL app.author="fortes" app.email="fortes@uci.cu" app.name="aspirante-api"
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends --allow-remove-essential python3 python-pip python3-pip libpq-dev openssh-client curl ca-certificates gnupg gettext libncurses5 libtinfo5 nano \
-    && rm -rf /var/lib/apt/lists/*
+ && apt-get install -y --no-install-recommends \
+        python3 python3-pip \
+        libpq-dev openssh-client curl ca-certificates gnupg \
+        gettext libncurses5 libtinfo5 nano \
+ && rm -rf /var/lib/apt/lists/*
 
 
 RUN ln -fs /usr/share/zoneinfo/America/Havana /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
