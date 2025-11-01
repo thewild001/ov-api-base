@@ -4,10 +4,13 @@ LABEL app.author="fortes" app.email="fortes@uci.cu" app.name="aspirante-api"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update \
+RUN sed -i \
+      -e 's|http://deb.debian.org|http://archive.debian.org|g' \
+      -e 's|http://security.debian.org|http://archive.debian.org/debian-security|g' \
+      /etc/apt/sources.list \
+ && apt-get update -o Acquire::Check-Valid-Until=false \
  && apt-get install -y --no-install-recommends \
-        libpq-dev openssh-client curl ca-certificates  \
-        gettext nano \
+        libpq-dev openssh-client curl ca-certificates gettext nano \
  && rm -rf /var/lib/apt/lists/*
 
 
