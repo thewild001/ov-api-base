@@ -8,7 +8,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
         python3 python3-pip \
         libpq-dev openssh-client curl ca-certificates gnupg \
-        gettext libncurses5 libtinfo5 nano \
+        gettext libncurses6 libtinfo6 nano \
  && rm -rf /var/lib/apt/lists/*
 
 
